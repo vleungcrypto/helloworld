@@ -8,10 +8,12 @@ jobs:
       - checkout
       - run: mvn clean install
       - run: echo "Build step finished"
+      - run: ls -la
       - persist_to_workspace:
           root: ~/app
           paths:
             - target
+      - run: ls -laR ~/app
   test:
     docker:
       - image: circleci/openjdk:8u222-jdk-stretch
@@ -26,4 +28,6 @@ workflows:
     jobs:
       - build
       - test
+        requires:
+          - build
       
