@@ -22,6 +22,8 @@ jobs:
       - attach_workspace:
           at: ~/app
       - run: java -cp target/jb-hello-world-maven-0.1.0.jar hello.HelloWorld
+      - run: docker-compose -v
+      - run: docker -v
 workflows:
   version: 2
   flow1:
