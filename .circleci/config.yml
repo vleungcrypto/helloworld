@@ -27,7 +27,7 @@ workflows:
   flow1:
     jobs:
       - build
-      - test
+      - test:
         requires:
           - build
       
