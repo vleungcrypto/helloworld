@@ -1,5 +1,10 @@
 version: 2
 jobs:
+  check:
+    machine: true
+    steps:
+      - run: docker-compose -v
+      - run: docker -v
   build:
     docker:
       - image: circleci/openjdk:8u222-jdk-stretch
@@ -28,8 +33,9 @@ workflows:
   version: 2
   flow1:
     jobs:
-      - build
-      - test:
-          requires:
-            - build
+      - check
+#      - build
+#      - test:
+#          requires:
+#            - build
       
