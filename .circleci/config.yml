@@ -3,15 +3,22 @@ jobs:
   build:
     docker:
       - image: circleci/openjdk:8u222-jdk-stretch
-    steps:
+      working_directory: ~/app
+      steps:
         - checkout
         - run: mvn clean install
         - run: echo "Build step finished"
+        - persist_to_workspace:
+          root: ~/app
+          paths:
+            - target
   test:
     docker:
       - image: circleci/openjdk:8u222-jdk-stretch
     steps:
-        - run: java -cp target/jb-hello-world-maven-0.1.0.jar hello.HelloWorld
+      - attach_workspace:
+        at: ~/app
+      - run: java -cp target/jb-hello-world-maven-0.1.0.jar hello.HelloWorld
 workflows:
   version: 2
   flow1:
