@@ -1,10 +1,19 @@
-version: 2
+version: 2.1
 jobs:
   check:
     machine: true
     steps:
       - run: docker-compose -v
       - run: docker -v
+#      - slack/status:
+#        mentions: USERID1,USERID2
+#        webhook: webhook
+  scan:
+    docker:
+      - image: 'node:latest'
+    steps:
+      - checkout
+      - sonarcloud/scan
   build:
     docker:
       - image: circleci/openjdk:8u222-jdk-stretch
@@ -29,13 +38,18 @@ jobs:
       - run: java -cp target/jb-hello-world-maven-0.1.0.jar hello.HelloWorld
       - run: docker-compose -v
       - run: docker -v
+orbs:
+  sonarcloud: sonarsource/sonarcloud@1.0.0
+#  slack: circleci/slack@3.4.1
 workflows:
   version: 2
   flow1:
     jobs:
-      - check
+#      - check
+      - scan:
+          context: sonarcloud
 #      - build
 #      - test:
-#          requires:
-#            - build
+#         requires:
+#           - build
       
