@@ -47,9 +47,10 @@ workflows:
   version: 2
   flow1:
     jobs:
+      - scan
 #      - check
-      - scan:
-          context: SonarCloud
+#      - scan:
+#          context: SonarCloud
 #      - build
 #      - test:
 #         requires:
