@@ -14,7 +14,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Analyze on sonarCloud
+          name: Analyze on SonarCloud
           command: mvn verify sonar:sonar
   build:
     docker:
@@ -49,7 +49,7 @@ workflows:
     jobs:
 #      - check
       - scan:
-          context: sonarCloud
+          context: SonarCloud
 #      - build
 #      - test:
 #         requires:
