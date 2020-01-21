@@ -1,5 +1,10 @@
 version: 2.1
 jobs:
+  job1:
+    - run:
+        name: Job 1
+        command: |
+          echo "Job 1 is running at tag: " + $CIRCLE_TAG
   check:
     machine: true
     steps:
@@ -47,9 +52,13 @@ workflows:
   version: 2
   flow1:
     jobs:
+      - build:
+          filters:
+            tags:
+              only: /.*/
 #      - check
-      - scan:
-          context: SonarCloud
+#      - scan:
+#          context: SonarCloud
 #      - build
 #      - test:
 #         requires:
