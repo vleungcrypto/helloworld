@@ -59,7 +59,7 @@ workflows:
             tags:
               only: /^v.*/
             branches:
-              only: master
+              only: develop
 #      - check
 #      - scan:
 #          context: SonarCloud
