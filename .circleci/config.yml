@@ -58,6 +58,8 @@ workflows:
           filters:
             tags:
               only: /^v.*/
+            branches:
+              ignore: /.*/
 #      - check
 #      - scan:
 #          context: SonarCloud
