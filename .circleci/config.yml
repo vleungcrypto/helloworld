@@ -57,7 +57,7 @@ workflows:
       - job1:
           filters:
             tags:
-              only: /.*/
+              only: /^v.*/
 #      - check
 #      - scan:
 #          context: SonarCloud
