@@ -1,6 +1,7 @@
 version: 2.1
 jobs:
   job1:
+    machine: true
     steps:
       - run:
           name: Job 1
